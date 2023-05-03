@@ -1,45 +1,22 @@
-const express = require('express');
-
-const tamagotchi = require('../models/game2');
-
+const express = require("express");
 const router = express.Router()
 
-module.exports = router;
+const  {
+    getAllTamagotchiRecords,
+    getTamagotchiRecord,
+    createTamagotchiRecord,
+    updateTamagotchiRecord,
+    deleteTamagotchiRecord
+} = require('../controllers/game2.js')
 
-//Post Method
-router.post('/tamagotchi', (req, res) => {
-    const data = new tamagotchi({
-        nombreMascota: req.body.nombreMascota,
-        nivelHambre: req.body.nivelHambre,
-        nivelEnergia: req.body.nivelEnergia,
-        nivelFelicidad: req.body.nivelFelicidad,
-        fechaNacimiento: req.body.fechaNacimiento
-    })
-    try{
-        const dataToSave = data.save();
-        res.status(200).json(dataToSave)
-    }
-    catch(error){
-        res.status(400).json({message: error.message})
-    }
-})
-/*
-//Get all Method
-router.get('/getAll', (req, res) => {
-    res.send('Get All API')
-})
+router.get('/records', getAllTamagotchiRecords)
 
-//Get by ID Method
-router.get('/getOne/:id', (req, res) => {
-    res.send(req.params.id)
-})
+router.get('/records/:id', getTamagotchiRecord)
 
-//Update by ID Method
-router.patch('/update/:id', (req, res) => {
-    res.send('Update by ID API')
-})
+router.post('/', createTamagotchiRecord)
 
-//Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API')
-})*/
+router.put('/records/:id', updateTamagotchiRecord)
+
+router.delete('/records/:id', deleteTamagotchiRecord)
+
+module.exports = router

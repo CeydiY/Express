@@ -1,44 +1,24 @@
-const express = require('express');
-
-const lagarto = require('../models/game1');
-
+const express = require("express");
 const router = express.Router()
 
+const  {
+    getAllLagartoRecords,
+    getLagartoRecord,
+    createLagartoRecord,
+    updateLagartoRecord,
+    deleteLagartoRecord
+} = require('../controllers/game1.js')
 
-module.exports = router;
+router.get('/records', getAllLagartoRecords)
 
-//Post Method
-router.post('/lagarto', (req, res) => {
-    const data = new lagarto({
-        nombreJugador: req.body.nombreJugador,
-        fechaHoraPartida: req.body.fechaHoraPartida,
-        resultadoPartida: req.body.resultadoPartida
-    })
-    try{
-        const dataToSave = data.save();
-        res.status(200).json(dataToSave)
-    }
-    catch(error){
-        res.status(400).json({message: error.message})
-    }
-})
+router.get('/records/:id', getLagartoRecord)
 
-//Get all Method
-router.get('/getAll', (req, res) => {
-    res.send('Get All API')
-})
+router.post('/', createLagartoRecord)
 
-//Get by ID Method
-router.get('/getOne/:id', (req, res) => {
-    res.send(req.params.id)
-})
+router.put('/records/:id', updateLagartoRecord)
 
-//Update by ID Method
-router.patch('/update/:id', (req, res) => {
-    res.send('Update by ID API')
-})
+router.delete('/records/:id', deleteLagartoRecord)
 
-//Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API')
-})
+module.exports = router
+
+

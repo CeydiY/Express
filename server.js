@@ -22,8 +22,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api', routesTamagotchi);
-app.use('/api', routesLagarto);
+app.use('/api/tamagotchi', routesTamagotchi);
+app.use('/api/lagarto', routesLagarto);
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
