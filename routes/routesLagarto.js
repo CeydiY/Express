@@ -13,7 +13,7 @@ router.get('/records', getAllLagartoRecords)
 
 router.get('/records/:id', getLagartoRecord)
 
-router.post('/', createLagartoRecord)
+router.post('/lagarto', createLagartoRecord)
 
 router.put('/records/:id', updateLagartoRecord)
 

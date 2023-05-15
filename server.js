@@ -25,6 +25,6 @@ app.use(express.json());
 app.use('/api/tamagotchi', routesTamagotchi);
 app.use('/api/lagarto', routesLagarto);
 
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
+app.listen(6000, () => {
+    console.log(`Server Started at ${6000}`)
 })
